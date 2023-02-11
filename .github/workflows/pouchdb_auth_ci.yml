@@ -76,11 +76,7 @@ jobs:
             DOCKER_USER: ${{ secrets.DOCKER_USER }}
             DOCKER_PWD: ${{ secrets.DOCKER_PWD }}
           run: docker login -u $DOCKER_USER -p $DOCKER_PWD          
-       # - name: Build the Docker image
-       #   run: docker build . --file Dockerfile --tag htri1207/pouchdb_auth:$(date +%s)
-        - name: Build and Push Docker image
-        - uses: docker/build-push-action@v4.0.0
-          with:
-            context: .
-            push: true
-            tags: ${{ secrets.DOCKER_USER }}/pouchdb_auth:$(date +%s)
+        - name: Build the Docker image
+          run: docker build . --file Dockerfile --tag htri1207/pouchdb_auth:latest
+        - name: Push Docker image
+          run: docker push ${{ secrets.DOCKER_USER }}/pouchdb_auth:latest
