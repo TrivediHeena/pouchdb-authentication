@@ -79,4 +79,7 @@ jobs:
         - name: Build the Docker image
           run: docker build . --file Dockerfile --tag htri1207/pouchdb_auth:$(date +%s)
         - name: Push Docker image
-          run: docker push ${{ secrets.DOCKER_USER }}/pouchdb_auth
+        - uses: docker/build-push-action@v4.0.0
+          with:
+            push: true
+        #run: docker push ${{ secrets.DOCKER_USER }}/pouchdb_auth
