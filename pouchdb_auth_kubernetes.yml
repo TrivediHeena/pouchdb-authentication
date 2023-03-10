@@ -1,0 +1,26 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pouchdbpod
+spec:
+  containers:
+    - name: pouchdbpod
+      image: htri1207/pouchdb_auth
+      command: ["/bin/bash","-c","while true; do echo Pouch DB Authentication Plugin Pod; sleep 5; done"]
+  restartPolicy: OnFailure
+#---
+#apiVersion: batch/v1
+#kind: CronJob
+#metadata:
+# name: pouchdb-auth
+#spec:
+# schedule: "5 * * * *"
+# jobTemplate:
+#  spec:
+#   template:
+#    spec:
+#     containers:
+#     - name: pouchdb-auth01
+#       image: htri1207/pouchdb_auth
+#       command: ["/bin/bash","-c","while true; do echo #Pouch DB Authentication plugin is still #authenticate...; sleep 5; done"]
+#     restartPolicy: OnFailure
